@@ -3,7 +3,7 @@
 
  Chapter 1
 
- Introduction to JavaScript
+  Introduction to JavaScript
 
 ---
 
