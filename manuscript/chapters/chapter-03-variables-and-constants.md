@@ -5771,3 +5771,849 @@ Before moving to the programming exercises, confirm that you can:
 - Write simple JavaScript programs that use variables correctly.
 
 If you can confidently complete each item in this checklist, you are ready for the programming exercises that follow.
+
+# Programming Exercises
+
+Complete the following programming exercises using JavaScript. Write your solutions in a separate `.js` file or use your browser's developer console. Unless otherwise instructed, display your results using `console.log()`.
+
+---
+
+## Exercise 1: Your First Variable
+
+Declare a variable named `firstName` and assign it your first name.
+
+Display the value in the console.
+
+---
+
+## Exercise 2: Personal Information
+
+Declare variables to store the following information:
+
+- Your full name
+- Your age
+- Your country
+- Your favorite programming language
+
+Display each variable using `console.log()`.
+
+---
+
+## Exercise 3: Using `const`
+
+Declare the following using `const`:
+
+- School name
+- Country
+- Pi (3.14159)
+
+Display all three values.
+
+---
+
+## Exercise 4: Using `let`
+
+Declare a variable named `score` and assign it the value `50`.
+
+Update the value to `75`.
+
+Display the final value.
+
+---
+
+## Exercise 5: Variable Reassignment
+
+Create a variable named `accountBalance`.
+
+Assign it an initial value of `10000`.
+
+Subtract `2500`.
+
+Add `5000`.
+
+Display the final balance.
+
+---
+
+## Exercise 6: Shopping Cart
+
+Create a variable named `cartTotal`.
+
+Add the following prices to it one at a time:
+
+- 2500
+- 1800
+- 950
+
+Display the total amount.
+
+---
+
+## Exercise 7: Naming Practice
+
+Rewrite the following poor variable names using meaningful camelCase names.
+
+```javascript
+let a = "David";
+let b = 18;
+let c = 4500;
+let d = true;
+```
+
+---
+
+## Exercise 8: Boolean Variables
+
+Declare the following Boolean variables:
+
+- `isLoggedIn`
+- `hasPaidFees`
+- `canVote`
+
+Assign appropriate values and display them.
+
+---
+
+## Exercise 9: Student Record
+
+Create variables for:
+
+- Student name
+- Student ID
+- Department
+- Level
+- GPA
+
+Display all values.
+
+---
+
+## Exercise 10: Weather Report
+
+Create variables for:
+
+- Temperature
+- Weather condition
+- Humidity
+
+Display a simple weather report using `console.log()`.
+
+---
+
+## Exercise 11: Bank Account
+
+Create variables representing:
+
+- Account holder
+- Account number
+- Current balance
+
+Increase the balance by `15000`.
+
+Display the updated balance.
+
+---
+
+## Exercise 12: Correct the Errors
+
+Identify and correct the errors in the following code.
+
+```javascript
+const country;
+
+country = "Nigeria";
+
+console.log(country);
+```
+
+---
+
+## Exercise 13: Case Sensitivity
+
+Predict the output of the following program before running it.
+
+```javascript
+let age = 25;
+let Age = 40;
+
+console.log(age);
+console.log(Age);
+```
+
+Explain why the output appears that way.
+
+---
+
+## Exercise 14: Reserved Keywords
+
+Which of the following are invalid variable names?
+
+```javascript
+let class = "Science";
+let function = "Login";
+let studentName = "Grace";
+let return = 50;
+let totalScore = 90;
+```
+
+Rewrite the invalid declarations correctly.
+
+---
+
+## Exercise 15: Scope Observation
+
+Read the following code.
+
+```javascript
+if (true) {
+    let city = "Lagos";
+}
+
+console.log(city);
+```
+
+Predict the result before running it.
+
+Explain your answer.
+
+---
+
+## Exercise 16: Convert `var`
+
+Rewrite the following program using modern JavaScript.
+
+```javascript
+var username = "David";
+var score = 80;
+```
+
+---
+
+## Exercise 17: Employee Payroll
+
+Create variables for:
+
+- Employee name
+- Hourly rate
+- Hours worked
+
+Calculate the weekly salary.
+
+Display all information.
+
+---
+
+## Exercise 18: Library System
+
+Create variables representing:
+
+- Book title
+- Author
+- Number of copies available
+
+Display the information neatly.
+
+---
+
+## Exercise 19: Flight Booking
+
+Create variables for:
+
+- Passenger name
+- Airline
+- Seat number
+- Checked-in status
+
+Display the booking details.
+
+---
+
+## Exercise 20: Mini Variable Program
+
+Write a small JavaScript program that stores information about yourself using at least **10 meaningful variables**.
+
+Your program should include:
+
+- Strings
+- Numbers
+- Boolean values
+- At least one `const`
+- At least one `let`
+
+Display all the stored information using `console.log()`.
+
+---
+
+## Challenge
+
+Modify Exercise 20 so that at least **three variables change their values** during program execution.
+
+Display the values **before** and **after** the changes.
+
+---
+
+> **CodeTales Challenge**
+>
+> Do not simply copy the examples from this chapter. Use your own information and create meaningful variable names. The more you practice writing variables, the more natural they will become in future chapters.
+
+# Challenge Exercises
+
+The following challenges are designed to strengthen your understanding of JavaScript variables by applying them to practical situations. There may be more than one correct solution. Focus on writing clean, readable, and well-organized code.
+
+---
+
+## Challenge 1: Student Registration System
+
+Write a program that stores the following information about a student:
+
+- Full name
+- Student ID
+- Department
+- Level
+- Age
+- GPA
+- Registered status
+
+Display all the information in a well-formatted manner using `console.log()`.
+
+---
+
+## Challenge 2: Online Banking System
+
+Create a simple banking program that:
+
+- Stores the account holder's name.
+- Stores the account number.
+- Stores the account balance.
+- Deposits ₦15,000.
+- Withdraws ₦4,500.
+- Displays the final account balance.
+
+---
+
+## Challenge 3: Online Shopping Cart
+
+Create a shopping cart program.
+
+Requirements:
+
+- Store the customer's name.
+- Add five product prices.
+- Calculate the total amount.
+- Display the customer's name and total purchase amount.
+
+---
+
+## Challenge 4: Employee Payroll
+
+Write a payroll program that stores:
+
+- Employee name
+- Hourly rate
+- Hours worked
+
+Calculate:
+
+- Weekly salary
+
+Display all information clearly.
+
+---
+
+## Challenge 5: Weather Dashboard
+
+Create variables to store:
+
+- City
+- Temperature
+- Humidity
+- Wind speed
+- Weather condition
+
+Display a weather report similar to the following:
+
+```text
+Weather Report
+--------------
+City: Lagos
+Temperature: 31°C
+Humidity: 78%
+Wind Speed: 14 km/h
+Condition: Sunny
+```
+
+---
+
+## Challenge 6: Library Inventory
+
+Write a program that stores information for three books.
+
+Each book should have:
+
+- Title
+- Author
+- Copies available
+
+Display all information neatly.
+
+---
+
+## Challenge 7: Personal Portfolio Information
+
+Imagine you are creating your personal portfolio website.
+
+Create variables for:
+
+- Full name
+- Profession
+- Years of experience
+- Skills
+- Country
+- Email
+- Portfolio title
+
+Display everything using `console.log()`.
+
+---
+
+## Challenge 8: Flight Reservation
+
+Create variables for:
+
+- Passenger name
+- Airline
+- Flight number
+- Departure city
+- Destination
+- Seat number
+- Checked-in status
+
+Display a complete boarding summary.
+
+---
+
+## Challenge 9: School Result Checker
+
+Create variables representing scores for:
+
+- Mathematics
+- English
+- Computer Science
+- Physics
+- Chemistry
+
+Calculate:
+
+- Total score
+- Average score
+
+Display the results.
+
+---
+
+## Challenge 10: Build Your Own Mini Program
+
+Design a JavaScript program of your own that uses at least:
+
+- 15 variables
+- 5 constants
+- 5 variable updates (reassignments)
+- Meaningful camelCase variable names
+
+Examples include:
+
+- Hotel booking system
+- Hospital registration system
+- Car rental system
+- Football team management system
+- Restaurant ordering system
+- Cinema ticket booking system
+
+Display all relevant information using `console.log()`.
+
+---
+
+## Reflection Questions
+
+After completing the challenges, reflect on the following questions:
+
+1. Which challenge was the easiest for you? Why?
+2. Which challenge was the most difficult? Why?
+3. Did you use `const` whenever a value did not change?
+4. Did you give your variables meaningful names?
+5. Could another programmer understand your code without additional explanation?
+6. What would you improve if you were to rewrite your solutions?
+
+---
+
+> **CodeTales Challenge**
+>
+> Real programming is about solving problems, not memorizing syntax. These challenges encourage you to think about how information is represented, organized, and updated in software. As you continue through this book, the same problem-solving mindset will help you master operators, control structures, functions, objects, and beyond.
+
+# Mini Project — Student Information Manager
+
+## Project Overview
+
+In this mini project, you will build a simple **Student Information Manager** using JavaScript variables.
+
+The goal is to apply everything you have learned in this chapter, including:
+
+- Variable declaration
+- `let`
+- `const`
+- Variable assignment
+- Variable reassignment
+- Meaningful variable names
+- camelCase naming convention
+- Using `console.log()` to display information
+
+This project does not require user input. Instead, you will create variables to represent a student's information and display the results in the console.
+
+---
+
+## Project Objectives
+
+By completing this project, you will be able to:
+
+- Declare variables correctly.
+- Decide when to use `const` and when to use `let`.
+- Store different types of data.
+- Update variable values.
+- Display formatted information.
+- Write clean and readable JavaScript code.
+
+---
+
+## Project Requirements
+
+Your program should store the following information:
+
+- School name
+- Student name
+- Student ID
+- Department
+- Level
+- Age
+- Email address
+- Phone number
+- GPA
+- Registered status
+
+Use `const` whenever the value will not change.
+
+Use `let` for values that may change.
+
+---
+
+## Step 1: Declare Constants
+
+Declare constants for information that remains unchanged.
+
+Example:
+
+```javascript
+const schoolName = "CodeTales Academy";
+const department = "Computer Science";
+```
+
+---
+
+## Step 2: Declare Variables
+
+Declare variables whose values may change.
+
+Example:
+
+```javascript
+let studentName = "Grace Johnson";
+let age = 18;
+let gpa = 3.85;
+let registered = true;
+```
+
+---
+
+## Step 3: Display the Information
+
+Use `console.log()` to display each variable.
+
+Example:
+
+```javascript
+console.log(schoolName);
+console.log(studentName);
+console.log(age);
+```
+
+---
+
+## Step 4: Update Some Values
+
+Suppose the student's information changes.
+
+Update:
+
+- GPA
+- Level
+- Registered status
+
+Example:
+
+```javascript
+gpa = 3.92;
+registered = false;
+```
+
+Display the updated values.
+
+---
+
+## Expected Console Output
+
+```text
+Student Information
+
+School: CodeTales Academy
+Name: Grace Johnson
+Student ID: CST2026001
+Department: Computer Science
+Level: 100
+Age: 18
+Email: grace@example.com
+Phone: +2348012345678
+GPA: 3.85
+Registered: true
+
+----------------------------
+
+Updated Information
+
+Level: 200
+GPA: 3.92
+Registered: false
+```
+
+---
+
+## Project Extension
+
+Improve your project by adding:
+
+- State of origin
+- Nationality
+- Date of birth
+- Admission year
+- Favorite programming language
+- Number of completed courses
+- Scholarship status
+
+Display all the additional information.
+
+---
+
+## Bonus Challenge
+
+Modify your program so that it displays a neatly formatted student profile using labels.
+
+Example:
+
+```text
+=============================
+      STUDENT PROFILE
+=============================
+
+Name: Grace Johnson
+Department: Computer Science
+Level: 200
+GPA: 3.92
+Status: Registered
+
+=============================
+```
+
+Try to make the output as neat and readable as possible.
+
+---
+
+## Skills Practiced
+
+By completing this project, you have practiced:
+
+- Variable declaration
+- Constants
+- Variable reassignment
+- Strings
+- Numbers
+- Boolean values
+- camelCase naming
+- Console output formatting
+- Writing readable JavaScript code
+
+---
+
+## Completion Checklist
+
+Before moving to the next chapter, confirm that you can:
+
+- Declare variables using `let`, `const`, and `var`.
+- Choose the correct declaration keyword.
+- Assign and reassign values.
+- Follow JavaScript naming rules.
+- Use camelCase consistently.
+- Explain variable scope.
+- Avoid reserved keywords.
+- Write meaningful variable names.
+- Build a simple JavaScript program using variables.
+
+If you can complete all of these tasks without referring to the chapter, you are ready to continue to **Chapter 4 – Operators and Expressions**.
+
+---
+
+> **CodeTales Insight**
+>
+> Every JavaScript application begins with data, and variables are how that data is stored and managed. Whether you're building a personal portfolio, an online banking system, a social media platform, or an AI-powered application, your ability to organize information using variables is one of the most important programming skills you can develop.
+
+# Further Reading
+
+Learning JavaScript is an ongoing journey. This chapter introduced the fundamentals of variables, but mastering programming requires consistent practice and continued study.
+
+The following resources will help reinforce the concepts covered in this chapter and prepare you for more advanced topics.
+
+---
+
+## Books
+
+### *Eloquent JavaScript* (4th Edition)
+
+Author: Marijn Haverbeke
+
+A beginner-friendly book that explains JavaScript concepts through practical examples and exercises. The early chapters provide an excellent review of variables and basic programming principles.
+
+---
+
+### *JavaScript: The Definitive Guide* (7th Edition)
+
+Author: David Flanagan
+
+One of the most comprehensive references on JavaScript. It covers variables, data types, operators, functions, objects, modules, and modern language features in depth.
+
+---
+
+### *You Don't Know JS Yet*
+
+Author: Kyle Simpson
+
+A series of books that explores JavaScript in great detail, helping readers understand not only how the language works but also why it behaves the way it does.
+
+---
+
+## Official Documentation
+
+The official JavaScript documentation is one of the most reliable learning resources available.
+
+Recommended topics:
+
+- Variables
+- `let`
+- `const`
+- `var`
+- Scope
+- JavaScript Basics
+
+---
+
+## Online Learning Platforms
+
+Consider practicing JavaScript using these interactive learning platforms:
+
+- freeCodeCamp
+- Codecademy
+- Scrimba
+- The Odin Project
+- JavaScript.info
+
+These platforms provide hands-on exercises that reinforce the concepts introduced in this chapter.
+
+---
+
+## Practice Suggestions
+
+To strengthen your understanding of variables:
+
+- Rewrite the examples from this chapter without copying them.
+- Create your own variable names for different real-world scenarios.
+- Practice converting `var` declarations to `let` or `const`.
+- Build small console-based programs that store and update information.
+- Experiment with different data types and observe the output.
+
+Consistent practice is the fastest way to become comfortable with JavaScript.
+
+---
+
+## Preparing for Chapter 4
+
+Before beginning the next chapter, make sure you can confidently:
+
+- Declare variables using `let`, `const`, and `var`.
+- Explain when to use each declaration keyword.
+- Write meaningful variable names using camelCase.
+- Understand variable scope.
+- Identify and avoid reserved keywords.
+- Reassign variable values correctly.
+- Read and interpret simple JavaScript code involving variables.
+
+If you are comfortable with these concepts, you are ready to move on to **Chapter 4 – Operators and Expressions**, where you will learn how JavaScript performs calculations, comparisons, and logical operations.
+
+# References
+
+The following references were used to guide the concepts presented in this chapter and are recommended for readers who wish to deepen their understanding of JavaScript variables and modern programming practices.
+
+---
+
+## Books
+
+Flanagan, D. (2020). *JavaScript: The Definitive Guide* (7th ed.). O'Reilly Media.
+
+Haverbeke, M. (2024). *Eloquent JavaScript* (4th ed.). No Starch Press.
+
+Simpson, K. (2020). *You Don't Know JS Yet: Get Started*. Independently Published.
+
+Freeman, E., & Robson, E. (2014). *Head First JavaScript Programming*. O'Reilly Media.
+
+Duckett, J. (2014). *JavaScript and JQuery: Interactive Front-End Web Development*. Wiley.
+
+---
+
+## Official Documentation
+
+ECMA International. (2024). *ECMAScript® Language Specification*.
+
+MDN Web Docs. *JavaScript Guide*.
+
+MDN Web Docs. *let*.
+
+MDN Web Docs. *const*.
+
+MDN Web Docs. *var*.
+
+MDN Web Docs. *JavaScript Variables*.
+
+---
+
+## Online Learning Resources
+
+freeCodeCamp
+
+The Odin Project
+
+Scrimba
+
+JavaScript.info
+
+Codecademy
+
+---
+
+## Additional Reading
+
+As you continue your JavaScript journey, regularly consult the official documentation alongside practical programming books and coding exercises. Combining authoritative references with consistent hands-on practice is one of the most effective ways to build long-term proficiency in JavaScript.
