@@ -5517,3 +5517,4281 @@ In this section, you learned how to insert newly created elements into the DOM u
 # CodeTales Insight
 
 > **Creating an element is only the first step. The real power of the DOM comes when you insert that element into the document at exactly the right place. Mastering insertion methods allows you to build dynamic interfaces that grow, change, and respond instantly to user actions—the hallmark of modern web applications.**
+
+---
+
+# 10.14 Replacing Elements
+
+As users interact with a web application, there are times when an existing HTML element needs to be replaced with a different one.
+
+For example:
+
+- Replacing a "Loading..." message with actual content.
+- Replacing a "Login" button with a "Logout" button.
+- Updating an old notification with a new one.
+- Replacing an image after uploading a new profile picture.
+- Updating a product card after editing its details.
+
+JavaScript provides several ways to replace elements in the DOM.
+
+In this section, you will learn how to use:
+
+- `replaceChild()`
+- `replaceWith()`
+
+---
+
+# Why Replace Elements?
+
+Sometimes modifying an element is not enough.
+
+Instead of changing every property individually, it is often easier to create a new element and replace the old one.
+
+This approach keeps your code simple and organized.
+
+---
+
+# The `replaceChild()` Method
+
+The `replaceChild()` method replaces one child element with another.
+
+### Syntax
+
+```javascript
+parent.replaceChild(newChild, oldChild);
+```
+
+Where:
+
+- `parent` is the parent element.
+- `newChild` is the new element.
+- `oldChild` is the element to be replaced.
+
+---
+
+# Example 1: Replacing a Paragraph
+
+HTML
+
+```html
+<div id="container">
+
+    <p id="oldMessage">
+        Loading...
+    </p>
+
+</div>
+```
+
+JavaScript
+
+```javascript
+const container =
+document.getElementById("container");
+
+const oldMessage =
+document.getElementById("oldMessage");
+
+const newMessage =
+document.createElement("p");
+
+newMessage.textContent =
+"Data loaded successfully.";
+
+container.replaceChild(newMessage, oldMessage);
+```
+
+Result
+
+```html
+<div id="container">
+
+    <p>
+        Data loaded successfully.
+    </p>
+
+</div>
+```
+
+---
+
+## Figure 10.36
+
+**Replacing a Child Element**
+
+```text
+Container
+
+│
+
+└── Old Paragraph
+
+↓
+
+replaceChild()
+
+↓
+
+Container
+
+│
+
+└── New Paragraph
+```
+
+---
+
+# Replacing a Heading
+
+HTML
+
+```html
+<h1 id="title">
+Welcome
+</h1>
+```
+
+JavaScript
+
+```javascript
+const title =
+document.getElementById("title");
+
+const heading =
+document.createElement("h2");
+
+heading.textContent =
+"Welcome to Cracking JavaScript";
+
+title.replaceWith(heading);
+```
+
+Result
+
+```html
+<h2>
+Welcome to Cracking JavaScript
+</h2>
+```
+
+---
+
+# The `replaceWith()` Method
+
+The `replaceWith()` method is a modern and simpler alternative.
+
+### Syntax
+
+```javascript
+oldElement.replaceWith(newElement);
+```
+
+Unlike `replaceChild()`, you do not need to reference the parent element.
+
+---
+
+# Example 2: Replacing an Image
+
+HTML
+
+```html
+<img
+
+id="profile"
+
+src="student.jpg"
+
+alt="Student">
+```
+
+JavaScript
+
+```javascript
+const image =
+document.getElementById("profile");
+
+const newImage =
+document.createElement("img");
+
+newImage.src = "teacher.jpg";
+
+newImage.alt = "Teacher";
+
+image.replaceWith(newImage);
+```
+
+The old image is replaced immediately.
+
+---
+
+# Replacing a Button
+
+HTML
+
+```html
+<button id="login">
+
+Login
+
+</button>
+```
+
+JavaScript
+
+```javascript
+const loginButton =
+document.getElementById("login");
+
+const logoutButton =
+document.createElement("button");
+
+logoutButton.textContent =
+"Logout";
+
+loginButton.replaceWith(logoutButton);
+```
+
+Result
+
+```html
+<button>
+
+Logout
+
+</button>
+```
+
+---
+
+## Figure 10.37
+
+**Replacing an Element**
+
+```text
+Old Button
+
+↓
+
+replaceWith()
+
+↓
+
+New Button
+```
+
+---
+
+# Replacing an Entire Section
+
+HTML
+
+```html
+<section id="news">
+
+Loading news...
+
+</section>
+```
+
+JavaScript
+
+```javascript
+const news =
+document.getElementById("news");
+
+const article =
+document.createElement("article");
+
+article.innerHTML = `
+<h2>Breaking News</h2>
+
+<p>JavaScript continues to dominate web development.</p>
+`;
+
+news.replaceWith(article);
+```
+
+The placeholder section is replaced with a complete article.
+
+---
+
+# Practical Example
+
+Suppose a student submits an examination.
+
+Before submission:
+
+```text
+Status:
+
+Not Submitted
+```
+
+After clicking **Submit**:
+
+```text
+Status:
+
+Submitted Successfully
+```
+
+Instead of updating every part of the original element, JavaScript creates a new status element and replaces the old one.
+
+---
+
+# Real-World Applications
+
+Replacing elements is commonly used in:
+
+- Loading screens
+- Login/logout interfaces
+- Notification systems
+- Product updates
+- User profile updates
+- Online dashboards
+- Single Page Applications (SPAs)
+- Interactive forms
+
+---
+
+# `replaceChild()` vs `replaceWith()`
+
+| `replaceChild()` | `replaceWith()` |
+|------------------|-----------------|
+| Requires the parent element | Does not require the parent element |
+| Older DOM method | Modern DOM method |
+| More verbose | Simpler and easier to read |
+
+For most modern applications, `replaceWith()` is the preferred option because it is more concise.
+
+---
+
+# Best Practices
+
+- Create and configure the new element before replacing the old one.
+- Use meaningful variable names.
+- Prefer `replaceWith()` when browser support meets your project's requirements.
+- Test replacements to ensure the new element behaves as expected.
+
+---
+
+# Common Beginner Mistakes
+
+## Mistake 1: Forgetting the Parent in `replaceChild()`
+
+Incorrect
+
+```javascript
+oldElement.replaceChild(newElement);
+```
+
+Correct
+
+```javascript
+parent.replaceChild(newElement, oldElement);
+```
+
+---
+
+## Mistake 2: Replacing an Element Before It Exists
+
+Always make sure the element has been selected successfully.
+
+```javascript
+const element =
+document.getElementById("message");
+```
+
+If `element` is `null`, replacement will fail.
+
+---
+
+## Mistake 3: Losing Event Listeners
+
+When an element is replaced, any event listeners attached to the old element are removed with it.
+
+If the new element should respond to user interactions, attach the necessary event listeners after creating or replacing it.
+
+---
+
+# Section Summary
+
+In this section, you learned how to replace existing DOM elements using `replaceChild()` and `replaceWith()`. You discovered the differences between these methods, learned how to replace headings, images, buttons, and sections, and explored practical situations where replacing elements is more effective than modifying them individually.
+
+Replacing elements is an important technique for building responsive and dynamic web interfaces.
+
+---
+
+# CodeTales Insight
+
+> **Professional developers don't just change content—they redesign interfaces on the fly. Replacing elements allows you to swap outdated content for new components quickly and cleanly, making your applications feel responsive and modern without requiring a page refresh.**
+
+---
+
+# 10.15 Removing Elements
+
+In many web applications, elements do not remain on the page forever.
+
+For example:
+
+- A completed task is removed from a to-do list.
+- A product is removed from a shopping cart.
+- A notification disappears after being read.
+- A chat message is deleted.
+- An advertisement is closed.
+- A temporary loading message disappears after data has loaded.
+
+JavaScript allows you to remove HTML elements from the Document Object Model (DOM) dynamically.
+
+In this section, you will learn how to remove elements using:
+
+- `remove()`
+- `removeChild()`
+
+---
+
+# Why Remove Elements?
+
+Removing unnecessary elements keeps a web page clean and improves the user experience.
+
+Instead of hiding elements with CSS, removing them completely deletes them from the DOM.
+
+Once removed, they no longer occupy space on the page.
+
+---
+
+# The `remove()` Method
+
+The easiest way to remove an element is by using the `remove()` method.
+
+### Syntax
+
+```javascript
+element.remove();
+```
+
+---
+
+# Example 1: Removing a Paragraph
+
+HTML
+
+```html
+<p id="message">
+This message will disappear.
+</p>
+```
+
+JavaScript
+
+```javascript
+const message =
+document.getElementById("message");
+
+message.remove();
+```
+
+Result
+
+The paragraph is completely removed from the page.
+
+---
+
+## Figure 10.38
+
+**Removing an Element**
+
+```text
+Before
+
+Paragraph
+
+↓
+
+remove()
+
+↓
+
+Paragraph Deleted
+```
+
+---
+
+# Removing a Button
+
+HTML
+
+```html
+<button id="deleteButton">
+
+Delete
+
+</button>
+```
+
+JavaScript
+
+```javascript
+const button =
+document.getElementById("deleteButton");
+
+button.remove();
+```
+
+The button disappears immediately.
+
+---
+
+# Removing an Image
+
+HTML
+
+```html
+<img
+
+id="photo"
+
+src="student.jpg"
+
+alt="Student">
+```
+
+JavaScript
+
+```javascript
+const image =
+document.getElementById("photo");
+
+image.remove();
+```
+
+The image is removed from the document.
+
+---
+
+# The `removeChild()` Method
+
+Older JavaScript code commonly uses the `removeChild()` method.
+
+Unlike `remove()`, it must be called on the parent element.
+
+### Syntax
+
+```javascript
+parent.removeChild(child);
+```
+
+---
+
+# Example 2: Removing a List Item
+
+HTML
+
+```html
+<ul id="languages">
+
+    <li id="html">HTML</li>
+
+    <li>CSS</li>
+
+    <li>JavaScript</li>
+
+</ul>
+```
+
+JavaScript
+
+```javascript
+const list =
+document.getElementById("languages");
+
+const html =
+document.getElementById("html");
+
+list.removeChild(html);
+```
+
+Result
+
+```html
+<ul id="languages">
+
+    <li>CSS</li>
+
+    <li>JavaScript</li>
+
+</ul>
+```
+
+---
+
+## Figure 10.39
+
+**Removing a Child Element**
+
+```text
+Parent
+
+├── HTML
+
+├── CSS
+
+└── JavaScript
+
+↓
+
+removeChild()
+
+↓
+
+Parent
+
+├── CSS
+
+└── JavaScript
+```
+
+---
+
+# Removing the Last Child
+
+JavaScript provides useful properties such as:
+
+```javascript
+parent.lastElementChild
+```
+
+Example
+
+```javascript
+const list =
+document.getElementById("languages");
+
+list.lastElementChild.remove();
+```
+
+The last list item is removed.
+
+---
+
+# Removing the First Child
+
+```javascript
+list.firstElementChild.remove();
+```
+
+The first list item disappears.
+
+---
+
+# Removing All Child Elements
+
+Suppose you want to clear an entire container.
+
+HTML
+
+```html
+<div id="container">
+
+    <p>HTML</p>
+
+    <p>CSS</p>
+
+    <p>JavaScript</p>
+
+</div>
+```
+
+JavaScript
+
+```javascript
+const container =
+document.getElementById("container");
+
+while (container.firstChild) {
+
+    container.removeChild(container.firstChild);
+
+}
+```
+
+Result
+
+```html
+<div id="container"></div>
+```
+
+The container remains, but all of its child elements have been removed.
+
+---
+
+# Practical Example
+
+Imagine a notification system.
+
+HTML
+
+```html
+<div id="notification">
+
+Assignment Submitted Successfully
+
+</div>
+```
+
+JavaScript
+
+```javascript
+const notification =
+document.getElementById("notification");
+
+notification.remove();
+```
+
+The notification disappears after the action is complete.
+
+---
+
+# Real-World Example
+
+Consider a shopping cart.
+
+HTML
+
+```html
+<li id="item1">
+
+Wireless Mouse
+
+</li>
+```
+
+When the user clicks **Remove**, JavaScript executes:
+
+```javascript
+document.getElementById("item1").remove();
+```
+
+The product is instantly removed from the shopping cart.
+
+---
+
+# `remove()` vs `removeChild()`
+
+| `remove()` | `removeChild()` |
+|-------------|-----------------|
+| Called on the element itself | Called on the parent element |
+| Simpler | Slightly more verbose |
+| Modern DOM method | Older DOM method |
+| Preferred for modern projects | Still useful when working with older code |
+
+---
+
+# Real-World Applications
+
+Removing elements is commonly used in:
+
+- Shopping carts
+- To-do lists
+- Chat applications
+- Notification systems
+- Email clients
+- Online dashboards
+- Dynamic forms
+- Single Page Applications (SPAs)
+
+---
+
+# Best Practices
+
+- Confirm that an element exists before removing it.
+- Remove only elements that are no longer needed.
+- Prefer `remove()` for modern JavaScript projects.
+- Be careful when removing parent elements because all of their children are removed as well.
+
+---
+
+# Common Beginner Mistakes
+
+## Mistake 1: Removing an Element That Does Not Exist
+
+Incorrect
+
+```javascript
+const item =
+document.getElementById("missing");
+
+item.remove();
+```
+
+If `item` is `null`, an error occurs.
+
+Safer approach
+
+```javascript
+if (item) {
+
+    item.remove();
+
+}
+```
+
+---
+
+## Mistake 2: Forgetting the Parent
+
+Incorrect
+
+```javascript
+child.removeChild(parent);
+```
+
+Correct
+
+```javascript
+parent.removeChild(child);
+```
+
+---
+
+## Mistake 3: Confusing `remove()` with Hiding
+
+```javascript
+element.style.display = "none";
+```
+
+This hides the element.
+
+```javascript
+element.remove();
+```
+
+This completely removes it from the DOM.
+
+Choose the method that best matches your application's needs.
+
+---
+
+# Section Summary
+
+In this section, you learned how to remove HTML elements dynamically using `remove()` and `removeChild()`. You explored the differences between these methods, learned how to remove individual elements and child elements, clear entire containers, and apply these techniques to real-world scenarios such as shopping carts, notifications, and task management applications.
+
+---
+
+# CodeTales Insight
+
+> **Adding and removing elements are two sides of the same coin. Great web applications continuously create, update, and remove content to reflect the current state of the application. Mastering element removal allows you to build cleaner, faster, and more responsive user interfaces that feel natural to users.**
+
+---
+
+# 10.16 Navigating the DOM Tree
+
+The Document Object Model (DOM) is organized as a tree.
+
+Every HTML element is connected to other elements through parent-child and sibling relationships.
+
+Instead of searching the entire document repeatedly, JavaScript allows you to move directly between related elements.
+
+This process is called **DOM navigation**.
+
+DOM navigation is one of the most important skills in JavaScript because it allows you to efficiently locate and manipulate elements.
+
+---
+
+# Understanding DOM Relationships
+
+Consider the following HTML.
+
+```html
+<div id="container">
+
+    <h2>Programming Languages</h2>
+
+    <ul>
+
+        <li>HTML</li>
+
+        <li>CSS</li>
+
+        <li>JavaScript</li>
+
+    </ul>
+
+</div>
+```
+
+The DOM tree looks like this:
+
+```text
+div
+
+├── h2
+
+└── ul
+
+    ├── li
+
+    ├── li
+
+    └── li
+```
+
+Each node has relationships with the others.
+
+---
+
+## Figure 10.40
+
+**Parent–Child Relationships**
+
+```text
+          div
+         /   \
+      h2      ul
+             / | \
+           li li li
+```
+
+---
+
+# Getting the Parent Element
+
+Every element knows its parent.
+
+Use the `parentElement` property.
+
+```javascript
+const list =
+document.querySelector("ul");
+
+console.log(list.parentElement);
+```
+
+Output
+
+```html
+<div id="container">
+...
+</div>
+```
+
+---
+
+# Getting Child Elements
+
+Use the `children` property.
+
+```javascript
+const container =
+document.getElementById("container");
+
+console.log(container.children);
+```
+
+Output
+
+```text
+HTMLCollection(2)
+```
+
+The collection contains:
+
+- `<h2>`
+- `<ul>`
+
+---
+
+# Accessing Individual Children
+
+```javascript
+const container =
+document.getElementById("container");
+
+console.log(container.children[0]);
+```
+
+Output
+
+```html
+<h2>Programming Languages</h2>
+```
+
+---
+
+# Getting the First Child Element
+
+```javascript
+const container =
+document.getElementById("container");
+
+console.log(container.firstElementChild);
+```
+
+Output
+
+```html
+<h2>Programming Languages</h2>
+```
+
+---
+
+# Getting the Last Child Element
+
+```javascript
+console.log(container.lastElementChild);
+```
+
+Output
+
+```html
+<ul>...</ul>
+```
+
+---
+
+## Figure 10.41
+
+**First and Last Child**
+
+```text
+Container
+
+├── First Child
+
+│
+
+└── Last Child
+```
+
+---
+
+# Navigating to the Next Sibling
+
+Every element can access its next sibling.
+
+HTML
+
+```html
+<li>HTML</li>
+
+<li>CSS</li>
+
+<li>JavaScript</li>
+```
+
+JavaScript
+
+```javascript
+const first =
+document.querySelector("li");
+
+console.log(first.nextElementSibling);
+```
+
+Output
+
+```html
+<li>CSS</li>
+```
+
+---
+
+# Navigating to the Previous Sibling
+
+```javascript
+const second =
+first.nextElementSibling;
+
+console.log(second.previousElementSibling);
+```
+
+Output
+
+```html
+<li>HTML</li>
+```
+
+---
+
+## Figure 10.42
+
+**Sibling Navigation**
+
+```text
+HTML
+
+↓
+
+nextElementSibling
+
+↓
+
+CSS
+
+↓
+
+nextElementSibling
+
+↓
+
+JavaScript
+```
+
+---
+
+# Finding All Child Elements
+
+```javascript
+const list =
+document.querySelector("ul");
+
+for (const item of list.children) {
+
+    console.log(item.textContent);
+
+}
+```
+
+Output
+
+```text
+HTML
+
+CSS
+
+JavaScript
+```
+
+---
+
+# Navigating Up the Tree
+
+Suppose you select a list item.
+
+```javascript
+const item =
+document.querySelector("li");
+```
+
+Its parent is:
+
+```javascript
+item.parentElement
+```
+
+Its grandparent is:
+
+```javascript
+item.parentElement.parentElement
+```
+
+This eventually reaches:
+
+```html
+<div id="container">
+```
+
+---
+
+# Practical Example
+
+HTML
+
+```html
+<div class="card">
+
+    <h3>JavaScript</h3>
+
+    <button>Delete</button>
+
+</div>
+```
+
+Suppose the user clicks the button.
+
+```javascript
+const button =
+document.querySelector("button");
+
+const card =
+button.parentElement;
+
+card.remove();
+```
+
+Instead of searching for the card again, JavaScript simply moves up to the parent element.
+
+This technique is extremely common in web applications.
+
+---
+
+# Real-World Example
+
+Imagine a shopping cart.
+
+```text
+Shopping Cart
+
+├── Product
+
+│   ├── Name
+
+│   ├── Price
+
+│   └── Remove Button
+```
+
+When the user clicks **Remove**, JavaScript can locate the product card using:
+
+```javascript
+button.parentElement.remove();
+```
+
+No additional search is required.
+
+---
+
+# Useful Navigation Properties
+
+| Property | Description |
+|----------|-------------|
+| `parentElement` | Parent element |
+| `children` | All child elements |
+| `firstElementChild` | First child |
+| `lastElementChild` | Last child |
+| `nextElementSibling` | Next sibling |
+| `previousElementSibling` | Previous sibling |
+
+These are among the most frequently used DOM navigation properties.
+
+---
+
+# `children` vs `childNodes`
+
+| `children` | `childNodes` |
+|------------|--------------|
+| Returns only HTML elements | Returns all nodes |
+| Ignores text nodes | Includes whitespace and text nodes |
+| Preferred in most cases | Used when every node matters |
+
+Most developers prefer `children` because it avoids whitespace nodes.
+
+---
+
+# Best Practices
+
+- Use navigation properties before searching the entire document.
+- Prefer `children` instead of `childNodes` unless text nodes are required.
+- Use descriptive variable names such as `parent`, `card`, and `list`.
+- Check that related elements exist before accessing them.
+
+---
+
+# Common Beginner Mistakes
+
+## Mistake 1: Confusing Parent with Child
+
+Incorrect
+
+```javascript
+parent.children.parentElement
+```
+
+Remember:
+
+- `parentElement` moves upward.
+- `children` moves downward.
+
+---
+
+## Mistake 2: Forgetting That `children` Returns a Collection
+
+Incorrect
+
+```javascript
+container.children.textContent
+```
+
+Correct
+
+```javascript
+container.children[0].textContent
+```
+
+---
+
+## Mistake 3: Using `nextElementSibling` Without Checking
+
+Incorrect
+
+```javascript
+lastItem.nextElementSibling.textContent
+```
+
+The last element has no next sibling.
+
+Safer approach
+
+```javascript
+if (lastItem.nextElementSibling) {
+
+    console.log(lastItem.nextElementSibling);
+
+}
+```
+
+---
+
+# Section Summary
+
+In this section, you learned how to navigate the DOM tree using `parentElement`, `children`, `firstElementChild`, `lastElementChild`, `nextElementSibling`, and `previousElementSibling`. You also learned how these relationships allow JavaScript to move efficiently between related elements without repeatedly searching the document.
+
+DOM navigation is one of the most valuable skills for building interactive applications because it makes your code faster, cleaner, and easier to maintain.
+
+---
+
+# CodeTales Insight
+
+> **Think of the DOM as a family tree. Every element has parents, children, brothers, and sisters. Once you understand these relationships, you no longer need to search the entire document—you can move directly to the element you need. Professional developers rely on DOM navigation every day because it leads to cleaner, more efficient, and more maintainable code.**
+
+---
+
+# 10.17 Working with CSS Classes (`classList`)
+
+In the previous section, you learned how to change CSS styles using the `style` property.
+
+Although this works well for small changes, professional developers rarely use inline styles for complex interfaces.
+
+Instead, they create CSS classes and use JavaScript to add, remove, or switch between those classes.
+
+This approach produces cleaner, more maintainable, and more reusable code.
+
+JavaScript provides the `classList` property to make working with CSS classes simple and efficient.
+
+---
+
+# Why Use CSS Classes?
+
+Consider the following CSS.
+
+```css
+.highlight {
+
+    background-color: yellow;
+
+    color: black;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+}
+```
+
+Instead of writing four JavaScript statements:
+
+```javascript
+element.style.backgroundColor = "yellow";
+element.style.color = "black";
+element.style.padding = "15px";
+element.style.borderRadius = "8px";
+```
+
+You can simply write:
+
+```javascript
+element.classList.add("highlight");
+```
+
+This is cleaner and easier to maintain.
+
+---
+
+## Figure 10.43
+
+**Using CSS Classes**
+
+```text
+CSS Class
+
+↓
+
+classList.add()
+
+↓
+
+Element Styled
+```
+
+---
+
+# The `classList` Property
+
+Every HTML element has a `classList` property.
+
+It provides methods for adding, removing, toggling, and checking CSS classes.
+
+Common methods include:
+
+- `add()`
+- `remove()`
+- `toggle()`
+- `contains()`
+- `replace()`
+
+---
+
+# Adding a Class
+
+HTML
+
+```html
+<p id="message">
+Welcome!
+</p>
+```
+
+CSS
+
+```css
+.highlight {
+
+    color: white;
+
+    background: green;
+
+}
+```
+
+JavaScript
+
+```javascript
+const message =
+document.getElementById("message");
+
+message.classList.add("highlight");
+```
+
+The paragraph immediately receives the styles defined in the `.highlight` class.
+
+---
+
+# Adding Multiple Classes
+
+```javascript
+message.classList.add(
+    "highlight",
+    "large",
+    "shadow"
+);
+```
+
+Several classes can be added at once.
+
+---
+
+# Removing a Class
+
+```javascript
+message.classList.remove("highlight");
+```
+
+The element immediately loses the styles associated with that class.
+
+---
+
+## Figure 10.44
+
+**Removing a Class**
+
+```text
+Styled Element
+
+↓
+
+classList.remove()
+
+↓
+
+Original Element
+```
+
+---
+
+# Toggling a Class
+
+The `toggle()` method is one of the most useful methods in JavaScript.
+
+If the class exists, it is removed.
+
+If it does not exist, it is added.
+
+Example
+
+```javascript
+message.classList.toggle("highlight");
+```
+
+This is perfect for features like:
+
+- Dark mode
+- Navigation menus
+- Accordions
+- Dropdowns
+- Sidebars
+
+---
+
+# Checking Whether a Class Exists
+
+Use the `contains()` method.
+
+```javascript
+if (message.classList.contains("highlight")) {
+
+    console.log("Highlighted");
+
+}
+```
+
+Output
+
+```text
+Highlighted
+```
+
+---
+
+# Replacing a Class
+
+Suppose you want to replace one class with another.
+
+CSS
+
+```css
+.success {
+
+    color: green;
+
+}
+
+.error {
+
+    color: red;
+
+}
+```
+
+JavaScript
+
+```javascript
+message.classList.replace(
+    "success",
+    "error"
+);
+```
+
+The `success` class is removed and the `error` class is added.
+
+---
+
+# Practical Example: Dark Mode
+
+HTML
+
+```html
+<body>
+
+<button id="themeButton">
+
+Toggle Theme
+
+</button>
+
+</body>
+```
+
+CSS
+
+```css
+.dark {
+
+    background: #1e293b;
+
+    color: white;
+
+}
+```
+
+JavaScript
+
+```javascript
+const button =
+document.getElementById("themeButton");
+
+button.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark");
+
+});
+```
+
+Each button click switches between light mode and dark mode.
+
+---
+
+## Figure 10.45
+
+**Dark Mode Toggle**
+
+```text
+Light Mode
+
+↓
+
+Click
+
+↓
+
+Dark Mode
+
+↓
+
+Click
+
+↓
+
+Light Mode
+```
+
+---
+
+# Practical Example: Active Navigation Link
+
+HTML
+
+```html
+<a class="nav-link">
+Home
+</a>
+```
+
+JavaScript
+
+```javascript
+const link =
+document.querySelector(".nav-link");
+
+link.classList.add("active");
+```
+
+The navigation link immediately receives the styles defined for the `.active` class.
+
+---
+
+# Practical Example: Form Validation
+
+CSS
+
+```css
+.error {
+
+    border: 2px solid red;
+
+}
+```
+
+JavaScript
+
+```javascript
+const input =
+document.getElementById("username");
+
+input.classList.add("error");
+```
+
+The text box immediately displays a red border to indicate invalid input.
+
+---
+
+# Real-World Applications
+
+The `classList` property is used in:
+
+- Dark mode
+- Mobile navigation menus
+- Dropdown menus
+- Tabs
+- Accordions
+- Image galleries
+- Form validation
+- Notifications
+- Modals
+- Toast messages
+- Shopping carts
+
+Nearly every modern website uses `classList`.
+
+---
+
+# `classList` vs `style`
+
+| `classList` | `style` |
+|-------------|---------|
+| Uses CSS classes | Uses inline styles |
+| Better for large projects | Better for small changes |
+| Easy to maintain | Can become repetitive |
+| Encourages reusable CSS | Can duplicate styling logic |
+
+For most production applications, `classList` is the preferred approach.
+
+---
+
+# Best Practices
+
+- Keep styling in CSS files.
+- Use JavaScript to add or remove classes.
+- Give classes descriptive names such as `active`, `hidden`, `success`, or `error`.
+- Avoid mixing too many inline styles with CSS classes.
+
+---
+
+# Common Beginner Mistakes
+
+## Mistake 1: Forgetting the Dot
+
+Incorrect
+
+```javascript
+element.classList.add(".active");
+```
+
+Correct
+
+```javascript
+element.classList.add("active");
+```
+
+The dot (`.`) is used only in CSS selectors, not in `classList`.
+
+---
+
+## Mistake 2: Replacing `toggle()` with `add()`
+
+Incorrect
+
+```javascript
+button.classList.add("dark");
+```
+
+Every click keeps the class added.
+
+Correct
+
+```javascript
+button.classList.toggle("dark");
+```
+
+This alternates between adding and removing the class.
+
+---
+
+## Mistake 3: Expecting `contains()` to Add a Class
+
+Incorrect
+
+```javascript
+element.classList.contains("active");
+```
+
+`contains()` only checks whether a class exists.
+
+To add a class:
+
+```javascript
+element.classList.add("active");
+```
+
+---
+
+# Section Summary
+
+In this section, you learned how to use the `classList` property to manage CSS classes dynamically. You explored the `add()`, `remove()`, `toggle()`, `contains()`, and `replace()` methods, and learned how they simplify styling compared to inline CSS. You also applied these methods to practical examples such as dark mode, navigation menus, and form validation.
+
+The `classList` API is one of the most frequently used DOM features in modern web development because it helps keep JavaScript focused on behavior while CSS handles presentation.
+
+---
+
+# CodeTales Insight
+
+> **Professional developers rarely hard-code visual styles in JavaScript. Instead, they define reusable CSS classes and let JavaScript simply decide *when* those classes should be applied. This separation of concerns leads to cleaner code, easier maintenance, and scalable web applications.**
+
+---
+
+# 10.18 DOM Events and Event Handling
+
+A web page becomes truly interactive when it responds to user actions.
+
+Imagine the following situations:
+
+- A button performs an action when clicked.
+- A form validates user input while typing.
+- A navigation menu opens when the mouse hovers over it.
+- An image gallery changes pictures when the user clicks Next.
+- A shopping cart updates automatically after adding an item.
+
+These interactions are possible because of **events**.
+
+An **event** is an action or occurrence detected by the browser.
+
+JavaScript listens for these events and executes code in response.
+
+---
+
+# What Is an Event?
+
+An event is anything that happens on a web page.
+
+Examples include:
+
+- Clicking a button
+- Moving the mouse
+- Pressing a keyboard key
+- Submitting a form
+- Loading a page
+- Resizing the browser window
+- Scrolling the page
+- Focusing on an input field
+
+JavaScript allows us to react to these events.
+
+---
+
+## Figure 10.46
+
+**How Events Work**
+
+```text
+User Action
+
+↓
+
+Browser Detects Event
+
+↓
+
+JavaScript Executes Code
+
+↓
+
+Web Page Updates
+```
+
+---
+
+# Event Handlers
+
+An **event handler** is a JavaScript function that runs when an event occurs.
+
+Example
+
+```javascript
+function greet() {
+
+    console.log("Welcome!");
+
+}
+```
+
+The function itself does nothing until it is connected to an event.
+
+---
+
+# The `addEventListener()` Method
+
+The modern way to listen for events is with `addEventListener()`.
+
+### Syntax
+
+```javascript
+element.addEventListener(event, callback);
+```
+
+Where:
+
+- `element` is the HTML element.
+- `event` is the event name.
+- `callback` is the function to execute.
+
+---
+
+# Example 1: Click Event
+
+HTML
+
+```html
+<button id="btn">
+
+Click Me
+
+</button>
+```
+
+JavaScript
+
+```javascript
+const button =
+document.getElementById("btn");
+
+button.addEventListener("click", () => {
+
+    console.log("Button clicked!");
+
+});
+```
+
+Every click prints:
+
+```text
+Button clicked!
+```
+
+---
+
+## Figure 10.47
+
+**Click Event**
+
+```text
+User Clicks Button
+
+↓
+
+click Event
+
+↓
+
+JavaScript Function Runs
+```
+
+---
+
+# Using a Named Function
+
+Instead of an anonymous function, you can use a named function.
+
+```javascript
+function showMessage() {
+
+    console.log("Hello, World!");
+
+}
+
+button.addEventListener("click", showMessage);
+```
+
+Notice that the function name is passed **without parentheses**.
+
+---
+
+# Multiple Event Listeners
+
+An element can respond to multiple events.
+
+```javascript
+button.addEventListener("click", () => {
+
+    console.log("Clicked");
+
+});
+
+button.addEventListener("mouseover", () => {
+
+    console.log("Mouse entered");
+
+});
+```
+
+The same button now reacts to different user actions.
+
+---
+
+# Common Mouse Events
+
+| Event | Description |
+|--------|-------------|
+| `click` | User clicks an element |
+| `dblclick` | User double-clicks |
+| `mouseover` | Mouse enters an element |
+| `mouseout` | Mouse leaves an element |
+| `mousedown` | Mouse button pressed |
+| `mouseup` | Mouse button released |
+| `mousemove` | Mouse moves over an element |
+
+---
+
+# Common Keyboard Events
+
+| Event | Description |
+|--------|-------------|
+| `keydown` | Key is pressed |
+| `keyup` | Key is released |
+
+Example
+
+```javascript
+document.addEventListener("keydown", () => {
+
+    console.log("Key pressed");
+
+});
+```
+
+---
+
+# Common Form Events
+
+| Event | Description |
+|--------|-------------|
+| `submit` | Form submitted |
+| `input` | User types |
+| `change` | Input value changes |
+| `focus` | Element gains focus |
+| `blur` | Element loses focus |
+
+These events are essential for form validation.
+
+---
+
+# The Event Object
+
+Whenever an event occurs, JavaScript automatically creates an **event object**.
+
+Example
+
+```javascript
+button.addEventListener("click", (event) => {
+
+    console.log(event);
+
+});
+```
+
+The event object contains useful information about the event.
+
+Examples include:
+
+- Which element triggered the event
+- Mouse position
+- Keyboard key pressed
+- Event type
+
+---
+
+# Reading the Event Type
+
+```javascript
+button.addEventListener("click", (event) => {
+
+    console.log(event.type);
+
+});
+```
+
+Output
+
+```text
+click
+```
+
+---
+
+# Reading the Event Target
+
+```javascript
+button.addEventListener("click", (event) => {
+
+    console.log(event.target);
+
+});
+```
+
+Output
+
+```html
+<button>Click Me</button>
+```
+
+`event.target` refers to the element that triggered the event.
+
+---
+
+## Figure 10.48
+
+**The Event Object**
+
+```text
+User Action
+
+↓
+
+Event Object
+
+├── type
+
+├── target
+
+├── key
+
+└── mouse position
+```
+
+---
+
+# Practical Example
+
+HTML
+
+```html
+<button id="welcomeButton">
+
+Show Welcome
+
+</button>
+```
+
+JavaScript
+
+```javascript
+const welcomeButton =
+document.getElementById("welcomeButton");
+
+welcomeButton.addEventListener("click", () => {
+
+    alert("Welcome to Cracking JavaScript!");
+
+});
+```
+
+When the user clicks the button, an alert appears.
+
+---
+
+# Real-World Applications
+
+Events are used in:
+
+- Login forms
+- Registration forms
+- Shopping carts
+- Games
+- Navigation menus
+- Image sliders
+- Search boxes
+- Dashboards
+- Video players
+- Interactive maps
+
+Nearly every interactive website depends on event handling.
+
+---
+
+# Best Practices
+
+- Prefer `addEventListener()` over inline HTML event attributes.
+- Keep event handler functions small and focused.
+- Use meaningful function names.
+- Remove unused event listeners when they are no longer needed.
+- Avoid putting too much logic inside a single event handler.
+
+---
+
+# Common Beginner Mistakes
+
+## Mistake 1: Calling the Function Immediately
+
+Incorrect
+
+```javascript
+button.addEventListener("click", greet());
+```
+
+This executes the function immediately.
+
+Correct
+
+```javascript
+button.addEventListener("click", greet);
+```
+
+---
+
+## Mistake 2: Misspelling Event Names
+
+Incorrect
+
+```javascript
+button.addEventListener("clicked", greet);
+```
+
+Correct
+
+```javascript
+button.addEventListener("click", greet);
+```
+
+---
+
+## Mistake 3: Forgetting to Select the Element
+
+Incorrect
+
+```javascript
+button.addEventListener("click", greet);
+```
+
+if `button` has never been defined.
+
+Always select the element first.
+
+```javascript
+const button =
+document.getElementById("btn");
+```
+
+---
+
+# Section Summary
+
+In this section, you learned what events are and how JavaScript responds to user interactions using `addEventListener()`. You explored common mouse, keyboard, and form events, learned how to use callback functions, and discovered how the event object provides information about the event that occurred.
+
+Event handling is one of the most important concepts in JavaScript because it transforms static web pages into interactive applications.
+
+---
+
+# CodeTales Insight
+
+> **A web page is like a conversation between the user and the browser. Events are how users speak, and event handlers are how your JavaScript responds. Mastering events enables you to build applications that feel responsive, intuitive, and engaging.**
+
+---
+
+# 10.19 Event Propagation (Bubbling and Capturing)
+
+When an event occurs on a web page, it does not happen only on the element that the user interacts with.
+
+Instead, the event travels through the Document Object Model (DOM).
+
+This movement of an event through the DOM is called **event propagation**.
+
+Understanding event propagation is important because it helps you control how events behave in complex web applications.
+
+---
+
+# What Is Event Propagation?
+
+Suppose you have the following HTML.
+
+```html
+<div id="container">
+
+    <button id="btn">
+
+        Click Me
+
+    </button>
+
+</div>
+```
+
+If the user clicks the button, what happens?
+
+Most beginners think only the button receives the event.
+
+In reality, the event travels through the DOM.
+
+---
+
+## Figure 10.49
+
+**Event Propagation**
+
+```text
+Document
+
+↓
+
+HTML
+
+↓
+
+Body
+
+↓
+
+Div
+
+↓
+
+Button
+
+↓
+
+User Click
+```
+
+After reaching the target element, the event travels back upward.
+
+---
+
+# The Three Phases of Event Propagation
+
+Every DOM event has three phases.
+
+1. Capturing Phase
+2. Target Phase
+3. Bubbling Phase
+
+```text
+Document
+
+↓
+
+HTML
+
+↓
+
+Body
+
+↓
+
+Div
+
+↓
+
+Button
+
+(Target)
+
+↑
+
+Div
+
+↑
+
+Body
+
+↑
+
+HTML
+
+↑
+
+Document
+```
+
+---
+
+# Phase 1: Capturing
+
+During the capturing phase, the event travels from the top of the document toward the target element.
+
+```text
+Document
+
+↓
+
+HTML
+
+↓
+
+Body
+
+↓
+
+Div
+
+↓
+
+Button
+```
+
+Capturing is also called **event trickling**.
+
+---
+
+# Phase 2: Target
+
+The target phase occurs when the event reaches the element that the user interacted with.
+
+Example
+
+```text
+User clicks
+
+↓
+
+Button
+```
+
+The button is called the **event target**.
+
+---
+
+# Phase 3: Bubbling
+
+After reaching the target, the event travels back upward through its parent elements.
+
+```text
+Button
+
+↑
+
+Div
+
+↑
+
+Body
+
+↑
+
+HTML
+
+↑
+
+Document
+```
+
+This is called **event bubbling**.
+
+Most DOM events bubble by default.
+
+---
+
+## Figure 10.50
+
+**Event Bubbling**
+
+```text
+Button
+
+↑
+
+Parent
+
+↑
+
+Grandparent
+
+↑
+
+Document
+```
+
+---
+
+# Demonstrating Event Bubbling
+
+HTML
+
+```html
+<div id="container">
+
+    <button id="btn">
+
+        Click Me
+
+    </button>
+
+</div>
+```
+
+JavaScript
+
+```javascript
+const container =
+document.getElementById("container");
+
+const button =
+document.getElementById("btn");
+
+container.addEventListener("click", () => {
+
+    console.log("Container clicked");
+
+});
+
+button.addEventListener("click", () => {
+
+    console.log("Button clicked");
+
+});
+```
+
+If the button is clicked, the output is:
+
+```text
+Button clicked
+
+Container clicked
+```
+
+The button receives the event first.
+
+The event then bubbles to the container.
+
+---
+
+# Demonstrating Capturing
+
+By default, `addEventListener()` listens during the bubbling phase.
+
+To listen during the capturing phase, pass a third argument of `true`.
+
+```javascript
+container.addEventListener(
+
+    "click",
+
+    () => {
+
+        console.log("Container");
+
+    },
+
+    true
+
+);
+```
+
+Now the output becomes:
+
+```text
+Container
+
+Button
+```
+
+The container receives the event before the button.
+
+---
+
+# The Event Object
+
+The event object helps us understand propagation.
+
+Example
+
+```javascript
+button.addEventListener("click", (event) => {
+
+    console.log(event.target);
+
+});
+```
+
+Output
+
+```html
+<button>
+
+Click Me
+
+</button>
+```
+
+---
+
+# `event.target`
+
+`event.target` refers to the element that originally triggered the event.
+
+Even if the event bubbles to another element, `event.target` still points to the original element.
+
+---
+
+# `event.currentTarget`
+
+`event.currentTarget` refers to the element whose event listener is currently executing.
+
+Example
+
+```javascript
+container.addEventListener("click", (event) => {
+
+    console.log(event.target);
+
+    console.log(event.currentTarget);
+
+});
+```
+
+If the button is clicked:
+
+```text
+event.target
+
+↓
+
+Button
+
+event.currentTarget
+
+↓
+
+Container
+```
+
+---
+
+## Figure 10.51
+
+**target vs currentTarget**
+
+```text
+User Clicks
+
+↓
+
+Button
+
+↓
+
+Bubbles
+
+↓
+
+Container
+
+target → Button
+
+currentTarget → Container
+```
+
+---
+
+# Stopping Event Propagation
+
+Sometimes you do not want an event to continue bubbling.
+
+Use:
+
+```javascript
+event.stopPropagation();
+```
+
+Example
+
+```javascript
+button.addEventListener("click", (event) => {
+
+    event.stopPropagation();
+
+    console.log("Button clicked");
+
+});
+```
+
+Now clicking the button produces:
+
+```text
+Button clicked
+```
+
+The container's event listener is never executed.
+
+---
+
+# Practical Example
+
+Imagine a notification panel.
+
+Clicking inside the notification should not close it.
+
+However, clicking outside the notification should close it.
+
+`stopPropagation()` prevents clicks inside the panel from reaching the page's outer event listeners.
+
+---
+
+# Real-World Applications
+
+Event propagation is important in:
+
+- Navigation menus
+- Dropdown menus
+- Modals
+- Dialog boxes
+- Notification panels
+- Context menus
+- Interactive dashboards
+- Image galleries
+
+Understanding propagation prevents unexpected behavior.
+
+---
+
+# Bubbling vs Capturing
+
+| Bubbling | Capturing |
+|----------|-----------|
+| Default behavior | Optional behavior |
+| Event moves upward | Event moves downward |
+| Most commonly used | Less common |
+| Easier for event delegation | Useful in specialized cases |
+
+---
+
+# Best Practices
+
+- Use bubbling unless capturing is specifically required.
+- Call `stopPropagation()` only when necessary.
+- Understand the difference between `target` and `currentTarget`.
+- Keep event handlers simple and focused.
+
+---
+
+# Common Beginner Mistakes
+
+## Mistake 1: Assuming Only the Clicked Element Receives the Event
+
+A click on a child element may also trigger listeners on its parent elements because of event bubbling.
+
+---
+
+## Mistake 2: Overusing `stopPropagation()`
+
+Avoid stopping propagation unless it solves a specific problem.
+
+Excessive use can make debugging more difficult.
+
+---
+
+## Mistake 3: Confusing `target` with `currentTarget`
+
+Remember:
+
+- `event.target` is the element that initiated the event.
+- `event.currentTarget` is the element whose listener is currently running.
+
+---
+
+# Section Summary
+
+In this section, you learned how events travel through the DOM using event propagation. You explored the three phases of propagation—capturing, target, and bubbling—and learned how to use `event.target`, `event.currentTarget`, and `event.stopPropagation()`. You also discovered how these concepts help build predictable and maintainable interactive web applications.
+
+Understanding event propagation is essential because many advanced JavaScript techniques, including event delegation, rely on it.
+
+---
+
+# CodeTales Insight
+
+> **Every click on a web page begins a journey through the DOM. Professional developers don't just respond to events—they understand how those events travel. Mastering event propagation gives you precise control over user interactions and prepares you for building sophisticated, high-performance web applications.**
+
+---
+
+# 10.20 Event Delegation
+
+In the previous section, you learned that most DOM events bubble from the target element up through its parent elements.
+
+This behavior allows us to use a powerful technique called **event delegation**.
+
+Instead of attaching an event listener to every individual element, we attach **one event listener** to a common parent element.
+
+When an event bubbles up, the parent determines which child element triggered the event.
+
+Event delegation is one of the most efficient techniques for handling events in large applications.
+
+---
+
+# Why Use Event Delegation?
+
+Imagine a list containing 500 items.
+
+One approach is to attach a click event to every list item.
+
+```text
+500 List Items
+
+↓
+
+500 Event Listeners
+```
+
+A better approach is to attach **one** event listener to the parent.
+
+```text
+Parent Element
+
+↓
+
+1 Event Listener
+
+↓
+
+Handles All Child Elements
+```
+
+This improves:
+
+- Performance
+- Memory usage
+- Maintainability
+- Scalability
+
+---
+
+## Figure 10.52
+
+**Without Event Delegation**
+
+```text
+li → Listener
+
+li → Listener
+
+li → Listener
+
+li → Listener
+
+li → Listener
+```
+
+---
+
+## Figure 10.53
+
+**With Event Delegation**
+
+```text
+ul
+
+↓
+
+One Listener
+
+↓
+
+Handles Every li
+```
+
+---
+
+# Example HTML
+
+```html
+<ul id="languages">
+
+    <li>HTML</li>
+
+    <li>CSS</li>
+
+    <li>JavaScript</li>
+
+</ul>
+```
+
+---
+
+# The Traditional Approach
+
+```javascript
+const items =
+document.querySelectorAll("li");
+
+items.forEach((item) => {
+
+    item.addEventListener("click", () => {
+
+        console.log(item.textContent);
+
+    });
+
+});
+```
+
+This works, but each `<li>` receives its own event listener.
+
+If hundreds of items exist, hundreds of listeners are created.
+
+---
+
+# Event Delegation Approach
+
+Instead, place the event listener on the parent element.
+
+```javascript
+const list =
+document.getElementById("languages");
+
+list.addEventListener("click", (event) => {
+
+    console.log(event.target.textContent);
+
+});
+```
+
+Now every list item is handled by a single event listener.
+
+---
+
+## Figure 10.54
+
+**How Event Delegation Works**
+
+```text
+User Clicks
+
+↓
+
+li
+
+↓
+
+Event Bubbles
+
+↓
+
+ul Listener Executes
+
+↓
+
+event.target Identifies li
+```
+
+---
+
+# Understanding `event.target`
+
+Suppose the user clicks:
+
+```html
+<li>CSS</li>
+```
+
+The event listener is attached to:
+
+```html
+<ul>
+```
+
+Inside the event handler:
+
+```javascript
+console.log(event.target);
+```
+
+Output
+
+```html
+<li>CSS</li>
+```
+
+Although the listener belongs to the `<ul>`, the target is still the clicked `<li>`.
+
+---
+
+# Using `matches()`
+
+Sometimes a parent contains different types of child elements.
+
+Use `matches()` to check whether the clicked element matches a selector.
+
+Example
+
+```javascript
+list.addEventListener("click", (event) => {
+
+    if (event.target.matches("li")) {
+
+        console.log(event.target.textContent);
+
+    }
+
+});
+```
+
+This ensures that only list items trigger the code.
+
+---
+
+# Using `closest()`
+
+Sometimes the user clicks inside a nested element.
+
+Example
+
+```html
+<li>
+
+    <span>JavaScript</span>
+
+</li>
+```
+
+If the user clicks the `<span>`, `event.target` becomes the `<span>`.
+
+To locate the nearest `<li>`, use `closest()`.
+
+```javascript
+const item =
+event.target.closest("li");
+```
+
+If an ancestor matching `"li"` exists, it is returned.
+
+---
+
+# Practical Example: Removing a Task
+
+HTML
+
+```html
+<ul id="tasks">
+
+    <li>
+
+        Study JavaScript
+
+        <button>Delete</button>
+
+    </li>
+
+</ul>
+```
+
+JavaScript
+
+```javascript
+const tasks =
+document.getElementById("tasks");
+
+tasks.addEventListener("click", (event) => {
+
+    if (event.target.matches("button")) {
+
+        event.target.parentElement.remove();
+
+    }
+
+});
+```
+
+Clicking the **Delete** button removes the correct task.
+
+Only one event listener is required.
+
+---
+
+## Figure 10.55
+
+**Deleting a Task**
+
+```text
+Button Click
+
+↓
+
+Event Bubbles
+
+↓
+
+Parent Listener
+
+↓
+
+Task Removed
+```
+
+---
+
+# Dynamically Added Elements
+
+One major advantage of event delegation is that it also works for elements created after the page loads.
+
+Example
+
+```javascript
+const item =
+document.createElement("li");
+
+item.textContent = "React";
+
+list.appendChild(item);
+```
+
+No additional event listener is needed.
+
+The parent listener automatically handles the new item.
+
+---
+
+# Real-World Applications
+
+Event delegation is widely used in:
+
+- To-do lists
+- Shopping carts
+- Comment systems
+- Chat applications
+- File managers
+- Data tables
+- Social media feeds
+- Dashboards
+- Kanban boards
+- Dynamic forms
+
+---
+
+# Event Delegation vs Individual Listeners
+
+| Individual Listeners | Event Delegation |
+|----------------------|------------------|
+| One listener per element | One listener on the parent |
+| Higher memory usage | Lower memory usage |
+| Harder to maintain | Easier to maintain |
+| New elements need new listeners | Automatically works with new elements |
+
+For applications with many similar elements, event delegation is generally the better choice.
+
+---
+
+# Best Practices
+
+- Use event delegation when managing many similar child elements.
+- Use `matches()` or `closest()` to identify the correct target.
+- Avoid attaching unnecessary listeners to every child.
+- Keep delegated event handlers concise and easy to read.
+
+---
+
+# Common Beginner Mistakes
+
+## Mistake 1: Forgetting About Bubbling
+
+Event delegation depends on event bubbling.
+
+If bubbling is stopped with `event.stopPropagation()`, delegated handlers may not execute.
+
+---
+
+## Mistake 2: Assuming `event.target` Is Always the Desired Element
+
+If nested elements exist, `event.target` may refer to a child element.
+
+Use:
+
+```javascript
+event.target.closest("li");
+```
+
+to find the intended ancestor.
+
+---
+
+## Mistake 3: Delegating From the Wrong Parent
+
+Attach the event listener to the closest common parent of the elements you want to manage.
+
+Attaching it too high in the DOM can make your code harder to understand and maintain.
+
+---
+
+# Section Summary
+
+In this section, you learned how event delegation uses event bubbling to handle events efficiently. You explored how a single parent event listener can manage many child elements, learned how to identify the clicked element with `event.target`, `matches()`, and `closest()`, and discovered why event delegation is widely used in modern JavaScript applications.
+
+By reducing the number of event listeners, event delegation improves performance, simplifies maintenance, and automatically supports dynamically created elements.
+
+---
+
+# CodeTales Insight
+
+> **Professional developers don't attach hundreds of event listeners when one will do. Event delegation takes advantage of the way events travel through the DOM, allowing a single, well-placed listener to manage an entire collection of elements. It's a simple idea that delivers cleaner code, better performance, and greater scalability.**
+
+---
+
+# 10.21 Mini Project – Interactive Student Profile
+
+## Project Overview
+
+In this mini project, you will build an **Interactive Student Profile** using JavaScript and the Document Object Model (DOM).
+
+This project combines many of the concepts you learned throughout this chapter, including:
+
+- Selecting DOM elements
+- Reading and updating content
+- Changing CSS classes
+- Modifying attributes
+- Creating new elements
+- Removing elements
+- Event handling
+- Event delegation
+- DOM navigation
+
+By the end of this project, you will have created an interactive web page that responds to user actions without reloading the browser.
+
+---
+
+# Project Preview
+
+The application displays a student's profile containing:
+
+- Student photo
+- Student name
+- Department
+- Biography
+- Skills
+- Buttons for interacting with the profile
+
+Users can:
+
+- Change the student's name
+- Toggle Dark Mode
+- Add a new skill
+- Remove skills
+- Change the profile picture
+- Count total skills
+
+---
+
+## Figure 10.56
+
+**Application Layout**
+
+```text
+-----------------------------------------
+
+Student Profile
+
+[ Profile Picture ]
+
+Name: John Doe
+
+Department: Computer Science
+
+Bio:
+Future Full-Stack Developer
+
+Skills
+
+• HTML
+• CSS
+• JavaScript
+
+[ Add Skill ]
+
+[ Change Name ]
+
+[ Change Photo ]
+
+[ Dark Mode ]
+
+-----------------------------------------
+```
+
+---
+
+# Project Folder Structure
+
+```text
+interactive-student-profile/
+
+│
+
+├── index.html
+
+├── style.css
+
+├── script.js
+
+└── images/
+
+      profile.jpg
+```
+
+---
+
+# Step 1 — Create the HTML
+
+Create the following structure.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Interactive Student Profile</title>
+
+<link rel="stylesheet"
+href="style.css">
+
+</head>
+
+<body>
+
+<div class="card">
+
+<img
+id="profileImage"
+src="images/profile.jpg"
+alt="Student">
+
+<h2 id="studentName">
+
+John Doe
+
+</h2>
+
+<p id="department">
+
+Computer Science
+
+</p>
+
+<p id="bio">
+
+Future Full-Stack Developer
+
+</p>
+
+<h3>
+
+Skills
+
+</h3>
+
+<ul id="skills">
+
+<li>HTML</li>
+
+<li>CSS</li>
+
+<li>JavaScript</li>
+
+</ul>
+
+<button id="changeName">
+
+Change Name
+
+</button>
+
+<button id="addSkill">
+
+Add Skill
+
+</button>
+
+<button id="changePhoto">
+
+Change Photo
+
+</button>
+
+<button id="darkMode">
+
+Toggle Dark Mode
+
+</button>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
+```
+
+---
+
+# Step 2 — Create the CSS
+
+```css
+body{
+
+font-family:Arial, sans-serif;
+
+background:#f2f2f2;
+
+padding:40px;
+
+}
+
+.card{
+
+width:350px;
+
+margin:auto;
+
+background:white;
+
+padding:20px;
+
+border-radius:10px;
+
+text-align:center;
+
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+
+}
+
+img{
+
+width:150px;
+
+height:150px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+}
+
+button{
+
+margin:5px;
+
+padding:10px 15px;
+
+cursor:pointer;
+
+}
+
+.dark{
+
+background:#222;
+
+color:white;
+}
+```
+
+---
+
+# Step 3 — Change the Student Name
+
+```javascript
+const changeName =
+document.getElementById("changeName");
+
+changeName.addEventListener("click", () => {
+
+document.getElementById("studentName").textContent =
+"Jane Smith";
+
+});
+```
+
+Try clicking the button.
+
+The student's name changes immediately.
+
+---
+
+# Step 4 — Toggle Dark Mode
+
+```javascript
+const darkButton =
+document.getElementById("darkMode");
+
+darkButton.addEventListener("click", () => {
+
+document.body.classList.toggle("dark");
+
+});
+```
+
+The page now switches between light mode and dark mode.
+
+---
+
+# Step 5 — Add a New Skill
+
+```javascript
+const addSkill =
+document.getElementById("addSkill");
+
+addSkill.addEventListener("click", () => {
+
+const skill =
+prompt("Enter a new skill:");
+
+if(skill){
+
+const item =
+document.createElement("li");
+
+item.textContent = skill;
+
+document
+.getElementById("skills")
+.appendChild(item);
+
+}
+
+});
+```
+
+Every new skill is added to the list.
+
+---
+
+# Step 6 — Remove a Skill
+
+Instead of adding a delete button to every skill, use **event delegation**.
+
+```javascript
+const skills =
+document.getElementById("skills");
+
+skills.addEventListener("click", (event)=>{
+
+if(event.target.matches("li")){
+
+event.target.remove();
+
+}
+
+});
+```
+
+Click any skill to remove it.
+
+---
+
+# Step 7 — Change the Profile Picture
+
+```javascript
+const photo =
+document.getElementById("changePhoto");
+
+photo.addEventListener("click", ()=>{
+
+document
+.getElementById("profileImage")
+.src="images/profile2.jpg";
+
+});
+```
+
+The profile image changes.
+
+---
+
+# Step 8 — Count Skills
+
+```javascript
+const total =
+document
+.getElementById("skills")
+.children.length;
+
+console.log(total);
+```
+
+The console displays the number of skills.
+
+---
+
+# Challenge Improvements
+
+Extend the application by adding:
+
+- Edit profile button
+- Change biography
+- Upload a custom profile picture
+- Favorite skill
+- Search skills
+- Sort skills alphabetically
+- Display total number of skills
+- Delete all skills
+- Confirm before deleting
+- Save data using Local Storage
+
+These improvements will prepare you for larger JavaScript applications.
+
+---
+
+# Technologies Used
+
+This project uses:
+
+- HTML5
+- CSS3
+- JavaScript
+- DOM API
+
+No external libraries or frameworks are required.
+
+---
+
+# Learning Outcomes
+
+After completing this project, you should be able to:
+
+- Select DOM elements
+- Modify text content
+- Change attributes
+- Toggle CSS classes
+- Create HTML elements
+- Remove HTML elements
+- Handle events
+- Use event delegation
+- Navigate the DOM
+- Build simple interactive applications
+
+---
+
+# Project Review Questions
+
+1. Which DOM methods were used to select elements?
+2. Why was `classList.toggle()` used for Dark Mode?
+3. Why is event delegation used to remove skills?
+4. Which method creates new HTML elements?
+5. Which method inserts new elements into the page?
+6. Which method removes elements?
+7. Why is `textContent` used instead of `innerHTML`?
+8. Which event is attached to the buttons?
+9. How many event listeners were created?
+10. Which DOM concepts were used most frequently?
+
+Try answering these questions before reviewing the code again.
+
+---
+
+# Mini Project Summary
+
+In this project, you combined nearly every DOM concept introduced in this chapter to build a complete interactive application. You selected elements, modified content, created and removed elements, handled user events, navigated the DOM, and used event delegation to simplify event management.
+
+Projects like this demonstrate how the DOM enables JavaScript to create dynamic and engaging user experiences without reloading the page.
+
+---
+
+# CodeTales Insight
+
+> **Reading about the DOM builds knowledge, but building a project develops skill. Every interactive application—from simple profile cards to large social media platforms—relies on the same core techniques you practiced here. Mastering these fundamentals prepares you for more advanced JavaScript topics and real-world development.**
+
+---
+
+# 10.22 Chapter Summary
+
+Congratulations!
+
+You have successfully completed **Chapter 10: Document Object Model (DOM)**.
+
+This chapter introduced one of the most powerful features of JavaScript—the ability to interact with and manipulate web pages dynamically.
+
+Before learning the DOM, your JavaScript programs mainly performed calculations, stored data, and made decisions. With the DOM, your code can now respond to user interactions, modify HTML, update CSS, create new content, and build interactive web applications.
+
+The skills you learned in this chapter form the foundation of modern front-end development.
+
+---
+
+# What You Learned
+
+Throughout this chapter, you explored how JavaScript communicates with HTML through the Document Object Model.
+
+You learned how to:
+
+- Understand the structure of the DOM tree.
+- Select HTML elements using various DOM methods.
+- Read and modify text and HTML content.
+- Change HTML attributes dynamically.
+- Modify CSS styles using JavaScript.
+- Manage CSS classes with `classList`.
+- Create new HTML elements.
+- Insert elements into the document.
+- Replace existing elements.
+- Remove elements from the DOM.
+- Navigate between parent, child, and sibling elements.
+- Respond to user interactions with event listeners.
+- Understand event propagation.
+- Use event delegation to write efficient event-handling code.
+- Build an interactive project using the DOM.
+
+Each topic builds on the previous one, creating a complete workflow for manipulating web pages.
+
+---
+
+# Key DOM Methods Covered
+
+By the end of this chapter, you became familiar with many essential DOM methods and properties, including:
+
+### Element Selection
+
+- `getElementById()`
+- `getElementsByClassName()`
+- `getElementsByTagName()`
+- `querySelector()`
+- `querySelectorAll()`
+
+### Content Manipulation
+
+- `textContent`
+- `innerHTML`
+- `innerText`
+
+### Attribute Manipulation
+
+- `getAttribute()`
+- `setAttribute()`
+- `removeAttribute()`
+- `hasAttribute()`
+
+### Style Manipulation
+
+- `style`
+- `classList.add()`
+- `classList.remove()`
+- `classList.toggle()`
+- `classList.contains()`
+- `classList.replace()`
+
+### Creating and Removing Elements
+
+- `createElement()`
+- `appendChild()`
+- `append()`
+- `prepend()`
+- `before()`
+- `after()`
+- `replaceChild()`
+- `replaceWith()`
+- `remove()`
+- `removeChild()`
+
+### DOM Navigation
+
+- `parentElement`
+- `children`
+- `firstElementChild`
+- `lastElementChild`
+- `nextElementSibling`
+- `previousElementSibling`
+
+### Events
+
+- `addEventListener()`
+- `event.target`
+- `event.currentTarget`
+- `event.stopPropagation()`
+
+These methods represent the core toolkit for DOM manipulation.
+
+---
+
+## Figure 10.57
+
+**The DOM Development Workflow**
+
+```text
+Select Element
+
+↓
+
+Read Data
+
+↓
+
+Modify Content
+
+↓
+
+Change Styles
+
+↓
+
+Handle Events
+
+↓
+
+Update the Web Page
+```
+
+---
+
+# The Importance of the DOM
+
+The DOM is what transforms a static HTML document into an interactive application.
+
+Without the DOM:
+
+- Buttons would not respond.
+- Forms could not be validated.
+- Menus would not open.
+- Shopping carts would not update.
+- Notifications would not appear.
+- Dynamic content would not exist.
+
+Nearly every website and web application depends on DOM manipulation.
+
+---
+
+# Best Practices to Remember
+
+As you continue learning JavaScript, keep these best practices in mind:
+
+- Select elements efficiently.
+- Prefer `querySelector()` and `querySelectorAll()` for flexible selection.
+- Use `textContent` when inserting plain text.
+- Use `innerHTML` only when HTML markup is required.
+- Keep presentation in CSS and behavior in JavaScript.
+- Use `classList` instead of repeatedly modifying inline styles.
+- Prefer `addEventListener()` over inline event attributes.
+- Use event delegation when managing many similar elements.
+- Write clean, readable, and maintainable code.
+
+These habits will help you build scalable applications.
+
+---
+
+# Common Mistakes to Avoid
+
+Many beginners make similar mistakes while learning the DOM.
+
+Avoid the following:
+
+- Forgetting to select an element before using it.
+- Trying to manipulate elements that do not exist.
+- Overusing `innerHTML`.
+- Mixing HTML, CSS, and JavaScript responsibilities.
+- Creating unnecessary event listeners.
+- Ignoring event bubbling and propagation.
+- Forgetting to check for `null` when selecting elements.
+
+Recognizing these mistakes early will save debugging time.
+
+---
+
+# How This Chapter Connects to the Next
+
+The DOM allows JavaScript to interact with a web page.
+
+The next step is learning how JavaScript communicates with external data and performs tasks asynchronously.
+
+In the upcoming chapters, you will learn about concepts such as:
+
+- Timers
+- Asynchronous programming
+- Callbacks
+- Promises
+- `async` and `await`
+- Fetch API
+- JSON
+- APIs
+- Modern web application architecture
+
+These topics build directly on the DOM skills you have developed.
+
+---
+
+# Knowledge Checklist
+
+Before moving on, make sure you can confidently answer **Yes** to the following questions:
+
+- Can I explain what the DOM is?
+- Can I select elements using different DOM methods?
+- Can I modify HTML content?
+- Can I update CSS styles?
+- Can I create and remove HTML elements?
+- Can I navigate between parent and child elements?
+- Can I respond to user events?
+- Can I explain event bubbling?
+- Can I implement event delegation?
+- Can I build a simple interactive web application?
+
+If you answered "Yes" to most of these questions, you are ready to continue.
+
+---
+
+# Final Thoughts
+
+The DOM is one of the most practical parts of JavaScript because it connects your code directly to the user interface.
+
+Everything you build in front-end development—from buttons and forms to dashboards and full-scale applications—depends on the concepts introduced in this chapter.
+
+Mastering the DOM gives you the confidence to create web pages that are dynamic, interactive, and engaging.
+
+As you continue your JavaScript journey, these skills will become second nature and will serve as the foundation for more advanced topics and frameworks.
+
+---
+
+# CodeTales Insight
+
+> **The DOM is where JavaScript comes alive. Variables, functions, and objects provide the logic, but the DOM gives that logic a visible presence on the screen. Every click, animation, notification, and interactive feature you encounter on the web is powered by the principles you learned in this chapter. Master these fundamentals, and you'll be well prepared to build modern, professional web applications.**
+
+---
+
+# 10.23 Practice Exercises & Challenge Projects
+
+Congratulations on completing **Chapter 10: Document Object Model (DOM)**.
+
+Learning happens through practice. These exercises are designed to help you strengthen your understanding of DOM manipulation, event handling, and interactive web development.
+
+Work through the exercises in order. Avoid looking at the solutions until you have attempted each problem.
+
+---
+
+# Part A – Review Questions
+
+Answer the following questions in your own words.
+
+1. What is the Document Object Model (DOM)?
+2. How does the browser create the DOM from an HTML document?
+3. What is the difference between the DOM tree and the HTML source code?
+4. Explain the relationship between parent, child, and sibling elements.
+5. What is the difference between `getElementById()` and `querySelector()`?
+6. When would you use `querySelectorAll()` instead of `getElementsByClassName()`?
+7. Explain the difference between `textContent`, `innerText`, and `innerHTML`.
+8. What is the purpose of the `classList` property?
+9. Explain the difference between `appendChild()` and `append()`.
+10. When would you use `replaceWith()` instead of modifying an element directly?
+11. What is the difference between `remove()` and `removeChild()`?
+12. What is event propagation?
+13. Explain the three phases of event propagation.
+14. What is the difference between `event.target` and `event.currentTarget`?
+15. What is event delegation, and why is it useful?
+
+---
+
+# Part B – Multiple Choice Questions
+
+Choose the correct answer.
+
+### Question 1
+
+Which method selects an element by its ID?
+
+A. `querySelectorAll()`
+
+B. `getElementById()`
+
+C. `getElementsByClassName()`
+
+D. `createElement()`
+
+---
+
+### Question 2
+
+Which property changes plain text inside an element?
+
+A. `innerHTML`
+
+B. `classList`
+
+C. `textContent`
+
+D. `style`
+
+---
+
+### Question 3
+
+Which method creates a new HTML element?
+
+A. `appendChild()`
+
+B. `createElement()`
+
+C. `replaceWith()`
+
+D. `remove()`
+
+---
+
+### Question 4
+
+Which method removes an element from the DOM?
+
+A. `deleteElement()`
+
+B. `remove()`
+
+C. `destroy()`
+
+D. `erase()`
+
+---
+
+### Question 5
+
+Which method adds an event listener?
+
+A. `listen()`
+
+B. `onEvent()`
+
+C. `addEventListener()`
+
+D. `attachEvent()`
+
+---
+
+# Part C – Practical Exercises
+
+## Exercise 1
+
+Create a web page containing:
+
+- A heading
+- A paragraph
+- A button
+
+When the button is clicked, change the heading text.
+
+---
+
+## Exercise 2
+
+Create a button that changes the background color of the page each time it is clicked.
+
+---
+
+## Exercise 3
+
+Create a list of programming languages.
+
+Add a button that inserts a new language into the list.
+
+---
+
+## Exercise 4
+
+Create a list of students.
+
+Allow the user to remove any student by clicking the student's name.
+
+---
+
+## Exercise 5
+
+Create a profile card containing:
+
+- Photo
+- Name
+- Department
+
+Add a button that changes the student's department.
+
+---
+
+## Exercise 6
+
+Create a "Show/Hide" button.
+
+Use `classList.toggle()` to hide and display a paragraph.
+
+---
+
+## Exercise 7
+
+Create a shopping list.
+
+Allow users to:
+
+- Add items
+- Remove items
+- Count total items
+
+---
+
+## Exercise 8
+
+Create a gallery of three images.
+
+Add "Next" and "Previous" buttons to switch between images.
+
+---
+
+## Exercise 9
+
+Create a simple calculator interface.
+
+Use buttons to perform addition, subtraction, multiplication, and division.
+
+---
+
+## Exercise 10
+
+Create a digital clock that updates every second.
+
+---
+
+# Part D – Debugging Exercises
+
+Each example below contains an error.
+
+Find and fix the problem.
+
+---
+
+## Debugging Exercise 1
+
+```javascript
+document.getElementByID("title");
+```
+
+---
+
+## Debugging Exercise 2
+
+```javascript
+button.addEventListener("clicked", showMessage);
+```
+
+---
+
+## Debugging Exercise 3
+
+```javascript
+element.classList.add(".active");
+```
+
+---
+
+## Debugging Exercise 4
+
+```javascript
+document.querySelector("#box").removeChild();
+```
+
+---
+
+## Debugging Exercise 5
+
+```javascript
+const title =
+document.getElementById("heading");
+
+title.textcontent = "Hello";
+```
+
+---
+
+# Part E – Build It Yourself
+
+Create the following applications using only HTML, CSS, and JavaScript.
+
+1. To-Do List
+2. Notes Application
+3. Student Registration Form
+4. Shopping Cart
+5. Quiz Application
+6. Weather Dashboard (with sample data)
+7. Contact Manager
+8. Expense Tracker
+9. Countdown Timer
+10. Image Slider
+
+---
+
+# Part F – Portfolio Challenge Projects
+
+These projects are suitable for your GitHub portfolio.
+
+## Beginner
+
+- Random Quote Generator
+- Color Palette Generator
+- BMI Calculator
+- Unit Converter
+- Age Calculator
+
+---
+
+## Intermediate
+
+- Music Playlist Manager
+- Movie Search Interface
+- Employee Directory
+- Recipe Finder
+- Student Grade Calculator
+
+---
+
+## Advanced
+
+- Kanban Task Board
+- Personal Finance Dashboard
+- Mini E-Commerce Store
+- Chat Interface
+- Online Examination System
+
+---
+
+# Chapter Challenge
+
+Build a **Student Management System** with the following features:
+
+- Add new students
+- Edit student information
+- Delete students
+- Search students
+- Filter by department
+- Sort alphabetically
+- Count total students
+- Toggle dark mode
+- Display profile pictures
+- Save data using Local Storage
+
+This challenge combines nearly every DOM concept from this chapter.
+
+---
+
+# Self-Assessment Checklist
+
+Before continuing to the next chapter, confirm that you can confidently:
+
+- Explain the DOM.
+- Select elements using multiple methods.
+- Modify text and HTML.
+- Change attributes.
+- Apply and remove CSS classes.
+- Create and remove elements.
+- Navigate the DOM tree.
+- Handle browser events.
+- Explain event propagation.
+- Implement event delegation.
+- Build interactive web applications.
+
+If you can complete these tasks without referring to the chapter, you have mastered the fundamentals.
+
+---
+
+# Looking Ahead
+
+In the next chapter, you will move beyond manipulating the page and begin working with **asynchronous JavaScript**.
+
+You will learn how to:
+
+- Delay code execution
+- Schedule repeated tasks
+- Handle asynchronous operations
+- Work with callbacks
+- Understand promises
+- Use `async` and `await`
+- Fetch data from APIs
+- Process JSON
+- Build applications that communicate with remote servers
+
+These concepts are essential for modern web development.
+
+---
+
+# Final Words
+
+The Document Object Model is the bridge between JavaScript and the web page. By mastering the DOM, you have learned how to transform static HTML into dynamic, responsive, and interactive applications.
+
+Keep practicing, experiment with your own ideas, and revisit these exercises as you progress. The more projects you build, the more confident and capable you will become as a JavaScript developer.
+
+---
+
+# CodeTales Insight
+
+> **Knowledge becomes skill only through consistent practice. Every professional JavaScript developer once wrote their first `getElementById()`, attached their first event listener, and debugged their first DOM error. Keep building, keep experimenting, and remember: every project you complete is another step toward mastery.**
